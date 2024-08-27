@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fade Effect Slider</title>
+    <link rel="stylesheet" href="../../gemslider.css">
+</head>
+<body>
+    <div class="gem-slider fade-slider">
+        <div class="gem-track">
+          <div class="gem-slide"><img src="fade1.jpg" alt="Fade 1"></div>
+          <div class="gem-slide"><img src="fade2.jpg" alt="Fade 2"></div>
+          <div class="gem-slide"><img src="fade3.jpg" alt="Fade 3"></div>
+        </div>
+      </div>
+      
+      <script src="../../gemslider.js"></script>
+      <script>
+      new GemSlider(document.querySelector('.fade-slider'), {
+        fade: true,
+        arrows: false,
+        autoplay: true,
+        autoplaySpeed: 3000
+      });
+      </script>
+</body>
+</html>

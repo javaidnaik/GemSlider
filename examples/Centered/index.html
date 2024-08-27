@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centered Mode Slider</title>
+    <link rel="stylesheet" href="../../gemslider.css">
+</head>
+<body>
+    <div class="gem-slider centered-slider">
+        <div class="gem-track">
+          <div class="gem-slide"><img src="center1.jpg" alt="Center 1"></div>
+          <div class="gem-slide"><img src="center2.jpg" alt="Center 2"></div>
+          <div class="gem-slide"><img src="center3.jpg" alt="Center 3"></div>
+        </div>
+      </div>
+      
+      <script src="../../gemslider.js"></script>
+      <script>
+      new GemSlider(document.querySelector('.centered-slider'), {
+        centerMode: true,
+        centerPadding: '60px',
+        slidesToShow: 3
+      });
+      </script>
+</body>
+</html>

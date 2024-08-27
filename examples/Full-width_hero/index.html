@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full-width Hero Slider</title>
+    <link rel="stylesheet" href="../../gemslider.css">
+</head>
+<body>
+    <div class="gem-slider hero-slider">
+        <div class="gem-track">
+          <div class="gem-slide">
+            <img src="hero1.jpg" alt="Hero 1">
+            <div class="hero-content">
+              <h1>Welcome to Our Site</h1>
+              <p>Discover amazing features</p>
+            </div>
+          </div>
+          <!-- More hero slides -->
+        </div>
+      </div>
+      
+      <script src="../../gemslider.js"></script>
+      <script>
+      new GemSlider(document.querySelector('.hero-slider'), {
+        arrows: false,
+        dots: false,
+        autoplay: true,
+        autoplaySpeed: 5000
+      });
+      </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vertical Content Slider</title>
+    <link rel="stylesheet" href="../../gemslider.css">
+</head>
+<body>
+    <div class="gem-slider vertical-slider">
+        <div class="gem-track">
+          <div class="gem-slide">
+            <h3>News Item 1</h3>
+            <p>Lorem ipsum dolor sit amet...</p>
+          </div>
+          <!-- More news items -->
+        </div>
+      </div>
+
+      <script src="../../gemslider.js"></script>
+      <script>
+      new GemSlider(document.querySelector('.vertical-slider'), {
+        vertical: true,
+        slidesToShow: 3,
+        autoplay: true,
+        autoplaySpeed: 3000
+      });
+      </script>
+</body>
+</html>
