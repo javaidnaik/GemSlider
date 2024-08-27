@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Image Slider</title>
+    <link rel="stylesheet" href="../../gemslider.css">
+</head>
+<body>
+    <div class="gem-slider basic-image-slider">
+        <div class="gem-track">
+          <div class="gem-slide"><img src="image1.jpg" alt="Image 1"></div>
+          <div class="gem-slide"><img src="image2.jpg" alt="Image 2"></div>
+          <div class="gem-slide"><img src="image3.jpg" alt="Image 3"></div>
+        </div>
+        <div class="gem-dots"></div>
+      </div>
+      
+      <script src="../../gemslider.js"></script>
+      <script>
+      new GemSlider(document.querySelector('.basic-image-slider'), {
+        dots: '.gem-dots'
+      });
+      </script>
+</body>
+</html>

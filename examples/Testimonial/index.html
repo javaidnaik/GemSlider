@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonial Slider</title>
+    <link rel="stylesheet" href="../../gemslider.css">
+</head>
+<body>
+    <div class="gem-slider testimonial-slider">
+        <div class="gem-track">
+          <div class="gem-slide">
+            <blockquote>"Great product! Highly recommended."</blockquote>
+            - John Doe
+          </div>
+          <!-- More testimonial slides -->
+        </div>
+        <div class="gem-dots"></div>
+      </div>
+      
+      <script src="../../gemslider.js"></script>
+      <script>
+      new GemSlider(document.querySelector('.testimonial-slider'), {
+        dots: '.gem-dots',
+        autoplay: true,
+        autoplaySpeed: 5000
+      });
+      </script>
+</body>
+</html>

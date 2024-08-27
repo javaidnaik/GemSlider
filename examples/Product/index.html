@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Carousel</title>
+    <link rel="stylesheet" href="../../gemslider.css">
+</head>
+<body>
+    <div class="gem-slider product-carousel">
+        <div class="gem-track">
+          <div class="gem-slide">
+            <img src="product1.jpg" alt="Product 1">
+            <h3>Product 1</h3>
+            <p>$19.99</p>
+          </div>
+          <!-- More product slides -->
+        </div>
+        <button class="gem-prev">←</button>
+        <button class="gem-next">→</button>
+      </div>
+      
+      <script src="../../gemslider.js"></script>
+      <script>
+      new GemSlider(document.querySelector('.product-carousel'), {
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        arrows: {
+          prev: '.gem-prev',
+          next: '.gem-next'
+        }
+      });
+      </script>
+</body>
+</html>
