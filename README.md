@@ -85,6 +85,283 @@ new GemSlider(document.querySelector('.gem-slider'), {
 });
 ```
 
+### Example HTML:
+
+```html
+<div class="gem-slider">
+  <div class="gem-track">
+    <div class="gem-slide"> 1 </div>
+    <div class="gem-slide"> 2 </div>
+    <div class="gem-slide"> 3 </div>
+    <div class="gem-slide"> 4 </div>
+    <div class="gem-slide"> 5 </div>
+    <div class="gem-slide"> 6 </div>
+  </div>
+  <div class="gem-dots"></div>
+  <button class="gem-prev">Prev</button>
+  <button class="gem-next">Next</button>
+</div>
+```
+
+### GemSlider Initialization
+
+```javascript
+new GemSlider(document.querySelector('.gem-slider'));
+```
+
+## Examples
+
+Here are 10 different examples showcasing the versatility of GemSlider:
+
+### 1. Basic Image Slider
+
+```html
+<div class="gem-slider basic-image-slider">
+  <div class="gem-track">
+    <div class="gem-slide"><img src="image1.jpg" alt="Image 1"></div>
+    <div class="gem-slide"><img src="image2.jpg" alt="Image 2"></div>
+    <div class="gem-slide"><img src="image3.jpg" alt="Image 3"></div>
+  </div>
+  <div class="gem-dots"></div>
+</div>
+
+<script>
+new GemSlider(document.querySelector('.basic-image-slider'), {
+  dots: '.gem-dots'
+});
+</script>
+```
+
+### 2. Product Carousel
+
+```html
+<div class="gem-slider product-carousel">
+  <div class="gem-track">
+    <div class="gem-slide">
+      <img src="product1.jpg" alt="Product 1">
+      <h3>Product 1</h3>
+      <p>$19.99</p>
+    </div>
+    <!-- More product slides -->
+  </div>
+  <button class="gem-prev">←</button>
+  <button class="gem-next">→</button>
+</div>
+
+<script>
+new GemSlider(document.querySelector('.product-carousel'), {
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  arrows: {
+    prev: '.gem-prev',
+    next: '.gem-next'
+  }
+});
+</script>
+```
+
+### 3. Testimonial Slider
+
+```html
+<div class="gem-slider testimonial-slider">
+  <div class="gem-track">
+    <div class="gem-slide">
+      <blockquote>"Great product! Highly recommended."</blockquote>
+      - John Doe
+    </div>
+    <!-- More testimonial slides -->
+  </div>
+  <div class="gem-dots"></div>
+</div>
+
+<script>
+new GemSlider(document.querySelector('.testimonial-slider'), {
+  dots: '.gem-dots',
+  autoplay: true,
+  autoplaySpeed: 5000
+});
+</script>
+```
+
+### 4. Full-width Hero Slider
+
+```html
+<div class="gem-slider hero-slider">
+  <div class="gem-track">
+    <div class="gem-slide">
+      <img src="hero1.jpg" alt="Hero 1">
+      <div class="hero-content">
+        <h1>Welcome to Our Site</h1>
+        <p>Discover amazing features</p>
+      </div>
+    </div>
+    <!-- More hero slides -->
+  </div>
+</div>
+
+<script>
+new GemSlider(document.querySelector('.hero-slider'), {
+  arrows: false,
+  dots: false,
+  autoplay: true,
+  autoplaySpeed: 5000
+});
+</script>
+```
+
+### 5. Vertical Content Slider
+
+```html
+<div class="gem-slider vertical-slider">
+  <div class="gem-track">
+    <div class="gem-slide">
+      <h3>News Item 1</h3>
+      <p>Lorem ipsum dolor sit amet...</p>
+    </div>
+    <!-- More news items -->
+  </div>
+</div>
+
+<script>
+new GemSlider(document.querySelector('.vertical-slider'), {
+  vertical: true,
+  slidesToShow: 3,
+  autoplay: true,
+  autoplaySpeed: 3000
+});
+</script>
+```
+
+### 6. Multi-item Slider
+
+```html
+<div class="gem-slider multi-item-slider">
+  <div class="gem-track">
+    <div class="gem-slide"><img src="item1.jpg" alt="Item 1"></div>
+    <!-- More item slides -->
+  </div>
+  <div class="gem-dots"></div>
+</div>
+
+<script>
+new GemSlider(document.querySelector('.multi-item-slider'), {
+  slidesToShow: 4,
+  slidesToScroll: 2,
+  dots: '.gem-dots',
+  responsive: [
+    {
+      breakpoint: 768,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1
+      }
+    }
+  ]
+});
+</script>
+```
+
+### 7. Fade Effect Slider
+
+```html
+<div class="gem-slider fade-slider">
+  <div class="gem-track">
+    <div class="gem-slide"><img src="fade1.jpg" alt="Fade 1"></div>
+    <div class="gem-slide"><img src="fade2.jpg" alt="Fade 2"></div>
+    <div class="gem-slide"><img src="fade3.jpg" alt="Fade 3"></div>
+  </div>
+</div>
+
+<script>
+new GemSlider(document.querySelector('.fade-slider'), {
+  fade: true,
+  arrows: false,
+  autoplay: true,
+  autoplaySpeed: 3000
+});
+</script>
+```
+
+### 8. Autoplay Slider with Pause on Hover
+
+```html
+<div class="gem-slider autoplay-slider">
+  <div class="gem-track">
+    <div class="gem-slide">Slide 1</div>
+    <div class="gem-slide">Slide 2</div>
+    <div class="gem-slide">Slide 3</div>
+  </div>
+</div>
+
+<script>
+new GemSlider(document.querySelector('.autoplay-slider'), {
+  autoplay: true,
+  autoplaySpeed: 2000,
+  pauseOnHover: true
+});
+</script>
+```
+
+### 9. Centered Mode Slider
+
+```html
+<div class="gem-slider centered-slider">
+  <div class="gem-track">
+    <div class="gem-slide"><img src="center1.jpg" alt="Center 1"></div>
+    <div class="gem-slide"><img src="center2.jpg" alt="Center 2"></div>
+    <div class="gem-slide"><img src="center3.jpg" alt="Center 3"></div>
+  </div>
+</div>
+
+<script>
+new GemSlider(document.querySelector('.centered-slider'), {
+  centerMode: true,
+  centerPadding: '60px',
+  slidesToShow: 3
+});
+</script>
+```
+
+### 10. Responsive Breakpoint Slider
+
+```html
+<div class="gem-slider responsive-slider">
+  <div class="gem-track">
+    <div class="gem-slide">Slide 1</div>
+    <div class="gem-slide">Slide 2</div>
+    <div class="gem-slide">Slide 3</div>
+    <div class="gem-slide">Slide 4</div>
+  </div>
+</div>
+
+<script>
+new GemSlider(document.querySelector('.responsive-slider'), {
+  slidesToShow: 3,
+  slidesToScroll: 3,
+  arrows: false,
+  dots: true,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2,
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
+  ]
+});
+</script>
+```
+
+These examples demonstrate various use cases and configurations of GemSlider, showcasing its flexibility and features. You can use these as starting points and customize them further to fit your specific needs.
+
 ## Options
 
 | Option | Type | Default | Description |
