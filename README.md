@@ -1,122 +1,43 @@
-# GemSlider
+# GemSlider v2.0.0
 
-A fast, lightweight, dependency-free, responsive, and feature-rich slider library for creating beautiful carousels and image galleries.
+A fast, lightweight, dependency-free, responsive, and feature-rich slider library for creating beautiful carousels, image galleries, and content sliders.
+
+## Features
+
+- **Fully Responsive** - Works on all devices and screen sizes
+- **Lightweight** - No dependencies, minimal footprint
+- **Multiple Animation Types** - Slide, fade, and zoom effects
+- **Lazy Loading** - Load images only when needed for better performance
+- **Accessibility** - ARIA attributes and keyboard navigation
+- **Touch & Swipe** - Enhanced touch and swipe support
+- **Infinite Loop** - Seamless infinite scrolling option
+- **Autoplay** - With customizable speed and pause on hover
+- **Center Mode** - Focus on the center slide
+- **Progress Bar** - Visual indicator of autoplay progress
+- **RTL Support** - Right-to-left language support
+- **Thumbnails** - Optional thumbnail navigation
+- **Vertical Mode** - Support for vertical sliders
+- **Dynamic Content** - Add or remove slides dynamically
+- **API** - Rich API for programmatic control
 
 ## Quick Start
 
-### Include gem-slider.min.css:
+### Include gemslider.css:
 
 ```html
-<link rel="stylesheet" href="gem-slider.min.css">
+<link rel="stylesheet" href="gemslider.css">
 ```
 
 ### Include GemSlider:
 
 ```html
-<script src="gem-slider.min.js"></script>
+<script src="gemslider.js"></script>
 ```
 
-### Example HTML:
+### Basic Example HTML:
 
 ```html
 <div class="gem-slider">
-  <div class="gem-track">
-    <div class="gem-slide"> 1 </div>
-    <div class="gem-slide"> 2 </div>
-    <div class="gem-slide"> 3 </div>
-    <div class="gem-slide"> 4 </div>
-    <div class="gem-slide"> 5 </div>
-    <div class="gem-slide"> 6 </div>
-  </div>
-  <div class="gem-dots"></div>
-  <button class="gem-prev">Prev</button>
-  <button class="gem-next">Next</button>
-</div>
-```
-
-### GemSlider Initialization
-
-```javascript
-new GemSlider(document.querySelector('.gem-slider'));
-```
-
-### GemSlider Initialization w/ full options:
-
-```javascript
-new GemSlider(document.querySelector('.gem-slider'), {
-  slidesToShow: 3,
-  slidesToScroll: 1,
-  itemWidth: 300,
-  exactWidth: true,
-  duration: 0.5,
-  dots: '.gem-dots',
-  arrows: {
-    prev: '.gem-prev',
-    next: '.gem-next'
-  },
-  draggable: true,
-  dragVelocity: 1.5,
-  easing: function (t) { return t<.5 ? 2*t*t : -1+(4-2*t)*t; },
-  scrollLock: true,
-  scrollLockDelay: 150,
-  resizeLock: true,
-  rewind: true,
-  autoplay: true,
-  autoplaySpeed: 3000,
-  pauseOnHover: true,
-  centerMode: true,
-  infinite: true,
-  responsive: [
-    {
-      breakpoint: 900,
-      settings: {
-        slidesToShow: 2,
-        slidesToScroll: 1
-      }
-    },
-    {
-      breakpoint: 575,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1
-      }
-    }
-  ]
-});
-```
-
-### Example HTML:
-
-```html
-<div class="gem-slider">
-  <div class="gem-track">
-    <div class="gem-slide"> 1 </div>
-    <div class="gem-slide"> 2 </div>
-    <div class="gem-slide"> 3 </div>
-    <div class="gem-slide"> 4 </div>
-    <div class="gem-slide"> 5 </div>
-    <div class="gem-slide"> 6 </div>
-  </div>
-  <div class="gem-dots"></div>
-  <button class="gem-prev">Prev</button>
-  <button class="gem-next">Next</button>
-</div>
-```
-
-### GemSlider Initialization
-
-```javascript
-new GemSlider(document.querySelector('.gem-slider'));
-```
-
-## Examples
-
-Here are 10 different examples showcasing the versatility of GemSlider:
-
-### 1. Basic Image Slider
-
-```html
-<div class="gem-slider basic-image-slider">
   <div class="gem-track">
     <div class="gem-slide"><img src="image1.jpg" alt="Image 1"></div>
     <div class="gem-slide"><img src="image2.jpg" alt="Image 2"></div>
@@ -124,232 +45,85 @@ Here are 10 different examples showcasing the versatility of GemSlider:
   </div>
   <div class="gem-dots"></div>
 </div>
+```
+
+### GemSlider Initialization
+
+```javascript
+new GemSlider(document.querySelector('.gem-slider'), {
+  // options
+});
+```
+
+## Lazy Loading
+
+For better performance, use the lazy loading feature:
+
+```html
+<div class="gem-slider">
+  <div class="gem-track">
+    <div class="gem-slide"><img data-src="image1.jpg" alt="Image 1"></div>
+    <div class="gem-slide"><img data-src="image2.jpg" alt="Image 2"></div>
+    <div class="gem-slide"><img data-src="image3.jpg" alt="Image 3"></div>
+  </div>
+</div>
 
 <script>
-new GemSlider(document.querySelector('.basic-image-slider'), {
-  dots: '.gem-dots'
+new GemSlider(document.querySelector('.gem-slider'), {
+  lazyLoad: true
 });
 </script>
 ```
 
-### 2. Product Carousel
+## Animation Options
 
-```html
-<div class="gem-slider product-carousel">
-  <div class="gem-track">
-    <div class="gem-slide">
-      <img src="product1.jpg" alt="Product 1">
-      <h3>Product 1</h3>
-      <p>$19.99</p>
-    </div>
-    <!-- More product slides -->
-  </div>
-  <button class="gem-prev">←</button>
-  <button class="gem-next">→</button>
-</div>
+GemSlider supports multiple animation types:
 
-<script>
-new GemSlider(document.querySelector('.product-carousel'), {
+```javascript
+// Slide animation (default)
+new GemSlider(element, {
+  animation: 'slide'
+});
+
+// Fade animation
+new GemSlider(element, {
+  animation: 'fade'
+});
+
+// Zoom animation
+new GemSlider(element, {
+  animation: 'zoom'
+});
+```
+
+## Multiple Items
+
+Display multiple items at once:
+
+```javascript
+new GemSlider(element, {
   slidesToShow: 3,
-  slidesToScroll: 1,
-  arrows: {
-    prev: '.gem-prev',
-    next: '.gem-next'
-  }
+  slidesToScroll: 1
 });
-</script>
 ```
 
-### 3. Testimonial Slider
+## Responsive Options
 
-```html
-<div class="gem-slider testimonial-slider">
-  <div class="gem-track">
-    <div class="gem-slide">
-      <blockquote>"Great product! Highly recommended."</blockquote>
-      - John Doe
-    </div>
-    <!-- More testimonial slides -->
-  </div>
-  <div class="gem-dots"></div>
-</div>
+Customize behavior at different breakpoints:
 
-<script>
-new GemSlider(document.querySelector('.testimonial-slider'), {
-  dots: '.gem-dots',
-  autoplay: true,
-  autoplaySpeed: 5000
-});
-</script>
-```
-
-### 4. Full-width Hero Slider
-
-```html
-<div class="gem-slider hero-slider">
-  <div class="gem-track">
-    <div class="gem-slide">
-      <img src="hero1.jpg" alt="Hero 1">
-      <div class="hero-content">
-        <h1>Welcome to Our Site</h1>
-        <p>Discover amazing features</p>
-      </div>
-    </div>
-    <!-- More hero slides -->
-  </div>
-</div>
-
-<script>
-new GemSlider(document.querySelector('.hero-slider'), {
-  arrows: false,
-  dots: false,
-  autoplay: true,
-  autoplaySpeed: 5000
-});
-</script>
-```
-
-### 5. Vertical Content Slider
-
-```html
-<div class="gem-slider vertical-slider">
-  <div class="gem-track">
-    <div class="gem-slide">
-      <h3>News Item 1</h3>
-      <p>Lorem ipsum dolor sit amet...</p>
-    </div>
-    <!-- More news items -->
-  </div>
-</div>
-
-<script>
-new GemSlider(document.querySelector('.vertical-slider'), {
-  vertical: true,
+```javascript
+new GemSlider(element, {
   slidesToShow: 3,
-  autoplay: true,
-  autoplaySpeed: 3000
-});
-</script>
-```
-
-### 6. Multi-item Slider
-
-```html
-<div class="gem-slider multi-item-slider">
-  <div class="gem-track">
-    <div class="gem-slide"><img src="item1.jpg" alt="Item 1"></div>
-    <!-- More item slides -->
-  </div>
-  <div class="gem-dots"></div>
-</div>
-
-<script>
-new GemSlider(document.querySelector('.multi-item-slider'), {
-  slidesToShow: 4,
-  slidesToScroll: 2,
-  dots: '.gem-dots',
   responsive: [
     {
-      breakpoint: 768,
+      breakpoint: 992,
       settings: {
         slidesToShow: 2,
         slidesToScroll: 1
       }
-    }
-  ]
-});
-</script>
-```
-
-### 7. Fade Effect Slider
-
-```html
-<div class="gem-slider fade-slider">
-  <div class="gem-track">
-    <div class="gem-slide"><img src="fade1.jpg" alt="Fade 1"></div>
-    <div class="gem-slide"><img src="fade2.jpg" alt="Fade 2"></div>
-    <div class="gem-slide"><img src="fade3.jpg" alt="Fade 3"></div>
-  </div>
-</div>
-
-<script>
-new GemSlider(document.querySelector('.fade-slider'), {
-  fade: true,
-  arrows: false,
-  autoplay: true,
-  autoplaySpeed: 3000
-});
-</script>
-```
-
-### 8. Autoplay Slider with Pause on Hover
-
-```html
-<div class="gem-slider autoplay-slider">
-  <div class="gem-track">
-    <div class="gem-slide">Slide 1</div>
-    <div class="gem-slide">Slide 2</div>
-    <div class="gem-slide">Slide 3</div>
-  </div>
-</div>
-
-<script>
-new GemSlider(document.querySelector('.autoplay-slider'), {
-  autoplay: true,
-  autoplaySpeed: 2000,
-  pauseOnHover: true
-});
-</script>
-```
-
-### 9. Centered Mode Slider
-
-```html
-<div class="gem-slider centered-slider">
-  <div class="gem-track">
-    <div class="gem-slide"><img src="center1.jpg" alt="Center 1"></div>
-    <div class="gem-slide"><img src="center2.jpg" alt="Center 2"></div>
-    <div class="gem-slide"><img src="center3.jpg" alt="Center 3"></div>
-  </div>
-</div>
-
-<script>
-new GemSlider(document.querySelector('.centered-slider'), {
-  centerMode: true,
-  centerPadding: '60px',
-  slidesToShow: 3
-});
-</script>
-```
-
-### 10. Responsive Breakpoint Slider
-
-```html
-<div class="gem-slider responsive-slider">
-  <div class="gem-track">
-    <div class="gem-slide">Slide 1</div>
-    <div class="gem-slide">Slide 2</div>
-    <div class="gem-slide">Slide 3</div>
-    <div class="gem-slide">Slide 4</div>
-  </div>
-</div>
-
-<script>
-new GemSlider(document.querySelector('.responsive-slider'), {
-  slidesToShow: 3,
-  slidesToScroll: 3,
-  arrows: false,
-  dots: true,
-  responsive: [
-    {
-      breakpoint: 1024,
-      settings: {
-        slidesToShow: 2,
-        slidesToScroll: 2,
-      }
     },
     {
-      breakpoint: 600,
+      breakpoint: 576,
       settings: {
         slidesToShow: 1,
         slidesToScroll: 1
@@ -357,143 +131,163 @@ new GemSlider(document.querySelector('.responsive-slider'), {
     }
   ]
 });
+```
+
+## Vertical Mode
+
+Create a vertical slider:
+
+```javascript
+new GemSlider(element, {
+  vertical: true,
+  slidesToShow: 3
+});
+```
+
+## Thumbnails
+
+Add thumbnail navigation:
+
+```html
+<div class="gem-slider">
+  <div class="gem-track">
+    <!-- Slides -->
+  </div>
+  <div class="gem-thumbnails"></div>
+</div>
+
+<script>
+new GemSlider(element, {
+  thumbnails: '.gem-thumbnails'
+});
 </script>
 ```
 
-These examples demonstrate various use cases and configurations of GemSlider, showcasing its flexibility and features. You can use these as starting points and customize them further to fit your specific needs.
+## Progress Bar
 
-## Options
-
-| Option | Type | Default | Description |
-|--------|------|---------|-------------|
-| `slidesToShow` | number | 1 | Number of slides to show |
-| `slidesToScroll` | number | 1 | Number of slides to scroll |
-| `itemWidth` | number | undefined | Fixed width for each item in pixels |
-| `exactWidth` | boolean | false | If true, slides won't be resized to fit viewport |
-| `duration` | number | 0.5 | Transition duration in seconds |
-| `dots` | string | null | Selector for dots container |
-| `arrows` | object | `{ prev: null, next: null }` | Selectors for previous and next arrows |
-| `draggable` | boolean | true | Enable mouse dragging |
-| `dragVelocity` | number | 1.5 | Velocity for mouse dragging |
-| `easing` | function | easeInOutQuad | Custom easing function |
-| `scrollLock` | boolean | true | Force centering slide after scroll event |
-| `scrollLockDelay` | number | 150 | Delay before applying scroll lock |
-| `resizeLock` | boolean | true | Force centering slide after resize event |
-| `rewind` | boolean | false | Go to the first slide after reaching the last one |
-| `autoplay` | boolean | false | Enable autoplay |
-| `autoplaySpeed` | number | 3000 | Autoplay speed in milliseconds |
-| `pauseOnHover` | boolean | true | Pause autoplay on hover |
-| `centerMode` | boolean | false | Center current slide |
-| `infinite` | boolean | false | Enable infinite looping |
-| `responsive` | array | null | Breakpoints for responsive behavior |
-
-## Methods
-
-### Change options:
+Add a progress bar for autoplay:
 
 ```javascript
-const slider = new GemSlider(document.querySelector('.gem-slider'));
+new GemSlider(element, {
+  autoplay: true,
+  autoplaySpeed: 3000,
+  progressBar: true
+});
+```
+
+## API Methods
+
+GemSlider provides a rich API for programmatic control:
+
+```javascript
+const slider = new GemSlider(element, options);
+
+// Navigation
+slider.prev();
+slider.next();
+slider.scrollTo(index);
+
+// Autoplay
+slider.pauseAutoplay();
+slider.resumeAutoplay();
+
+// Update options
 slider.setOption('slidesToShow', 2);
 
-// Optionally call refresh
+// Refresh slider
 slider.refresh();
-```
 
-### Navigation:
-
-```javascript
-const slider = new GemSlider(document.querySelector('.gem-slider'));
-slider.prev(); // Go to previous slide
-slider.next(); // Go to next slide
-slider.scrollTo(3); // Go to slide index 3
-```
-
-### Destroy:
-
-```javascript
-const slider = new GemSlider(document.querySelector('.gem-slider'));
+// Destroy slider
 slider.destroy();
 ```
 
 ## Events
 
-### Bind event:
+Listen for slider events:
 
 ```javascript
-document.querySelector('.gem-slider').addEventListener('gem-slide-visible', function(event) {
-  // `this` is bound to the slider element
-  // custom data located at `event.detail`
-  console.log('Slide visible:', event.detail.slideIndex);
+const slider = document.querySelector('.gem-slider');
+
+slider.addEventListener('gem-slide-changed', function(event) {
+  console.log('Slide changed to:', event.detail.currentSlide);
+});
+
+slider.addEventListener('gem-loaded', function(event) {
+  console.log('Slider loaded:', event.detail.gemSlider);
 });
 ```
 
-Available events:
-- `gem-loaded`: Fired when the slider is fully loaded and initialized
-- `gem-refresh`: Fired when the slider is refreshed
-- `gem-slide-visible`: Fired when a slide becomes visible
-- `gem-slide-hidden`: Fired when a slide becomes hidden
-- `gem-destroy`: Fired when the slider is destroyed
-- `gem-resize`: Fired when the slider is resized
-
-## Browser support
-
-GemSlider should run on all modern browsers. For older browser support, consider adding polyfills for:
-- `document.querySelector`
-- `Array.from`
-- `Object.assign`
-- `CustomEvent`
-
-## Styling
-
-GemSlider comes with basic styling. You can customize the appearance by modifying the CSS classes:
-
-- `.gem-slider`: The main container
-- `.gem-track`: The track containing all slides
-- `.gem-slide`: Individual slide
-- `.gem-slide-visible`: Applied to visible slides
-- `.gem-dots`: Container for dot navigation
-- `.gem-dot`: Individual dot
-- `.gem-dot-active`: Active dot
-- `.gem-prev`, `.gem-next`: Previous and next arrow buttons
-
-## Advanced Usage
-
-### Custom Easing Function
-
-You can provide a custom easing function to control the sliding animation:
+## All Configuration Options
 
 ```javascript
-new GemSlider(document.querySelector('.gem-slider'), {
+{
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  itemWidth: undefined,
+  exactWidth: false,
+  duration: 0.5,
+  dots: null,
+  arrows: {
+    prev: null,
+    next: null
+  },
+  draggable: true,
+  dragVelocity: 1.5,
   easing: function(t) {
-    return t<.5 ? 4*t*t*t : (t-1)*(2*t-2)*(2*t-2)+1; // easeInOutCubic
-  }
-});
+    return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+  },
+  scrollLock: true,
+  scrollLockDelay: 150,
+  resizeLock: true,
+  responsive: null,
+  rewind: false,
+  autoplay: false,
+  autoplaySpeed: 3000,
+  pauseOnHover: true,
+  centerMode: false,
+  infinite: false,
+  lazyLoad: false,
+  preloadImages: 1,
+  animation: 'slide',
+  thumbnails: null,
+  progressBar: false,
+  keyboardNavigation: true,
+  touchThreshold: 5,
+  adaptiveHeight: false,
+  accessibility: true,
+  rtl: false,
+  swipeToSlide: false,
+  waitForAnimate: true,
+  zIndex: 1000
+}
 ```
 
-### Responsive Breakpoints
+## Examples
 
-Set different options for various screen sizes:
+Check out the examples directory for various implementations:
 
-```javascript
-new GemSlider(document.querySelector('.gem-slider'), {
-  slidesToShow: 3,
-  responsive: [
-    {
-      breakpoint: 900,
-      settings: {
-        slidesToShow: 2,
-        slidesToScroll: 2
-      }
-    },
-    {
-      breakpoint: 575,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1
-      }
-    }
-  ]
-});
-```
+- Basic slider
+- Autoplay with progress bar
+- Centered mode
+- Fade effect
+- Full-width hero slider
+- Multi-item carousel
+- Vertical content slider
+- Product showcase
+- Responsive gallery
+- Testimonial slider
 
-This documentation provides a comprehensive guide to using the GemSlider library. Users can refer to this documentation to understand how to create different types of sliders, customize their appearance and behavior, and integrate them into their projects.
+## Browser Support
+
+GemSlider works in all modern browsers:
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+- Opera (latest)
+- Mobile browsers (iOS Safari, Android Chrome)
+
+## License
+
+MIT License

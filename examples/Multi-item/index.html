@@ -5,32 +5,251 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multi-item Slider</title>
     <link rel="stylesheet" href="../../gemslider.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .feature-list {
+            margin-top: 30px;
+        }
+        .feature-list h3 {
+            margin-bottom: 10px;
+        }
+        .feature-list ul {
+            margin-bottom: 20px;
+        }
+        .gem-slide {
+            height: 250px;
+            padding: 10px;
+        }
+        .gem-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        .gem-slide-visible img:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .card-content {
+            padding: 15px;
+            background: white;
+            border-radius: 0 0 8px 8px;
+            margin-top: -8px;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .card-content h3 {
+            margin: 0 0 10px;
+            font-size: 18px;
+        }
+        .card-content p {
+            margin: 0;
+            font-size: 14px;
+            color: #666;
+        }
+        .controls {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+            gap: 10px;
+        }
+        .controls button {
+            padding: 8px 16px;
+            background: #333;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .controls button:hover {
+            background: #555;
+        }
+        .gem-arrow {
+            background-color: #333;
+        }
+        .gem-arrow::before {
+            border-color: white;
+        }
+    </style>
 </head>
 <body>
-    <div class="gem-slider multi-item-slider">
-        <div class="gem-track">
-          <div class="gem-slide"><img src="item1.jpg" alt="Item 1"></div>
-          <!-- More item slides -->
+    <h1>GemSlider - Multi-item Example</h1>
+    
+    <div class="container">
+        <div class="gem-slider multi-item-slider">
+            <div class="gem-track">
+                <div class="gem-slide">
+                    <img data-src="https://picsum.photos/400/250?random=50" alt="Product 1">
+                    <div class="card-content">
+                        <h3>Product 1</h3>
+                        <p>High-quality product with amazing features</p>
+                    </div>
+                </div>
+                <div class="gem-slide">
+                    <img data-src="https://picsum.photos/400/250?random=51" alt="Product 2">
+                    <div class="card-content">
+                        <h3>Product 2</h3>
+                        <p>Premium design with excellent performance</p>
+                    </div>
+                </div>
+                <div class="gem-slide">
+                    <img data-src="https://picsum.photos/400/250?random=52" alt="Product 3">
+                    <div class="card-content">
+                        <h3>Product 3</h3>
+                        <p>Affordable option with great value</p>
+                    </div>
+                </div>
+                <div class="gem-slide">
+                    <img data-src="https://picsum.photos/400/250?random=53" alt="Product 4">
+                    <div class="card-content">
+                        <h3>Product 4</h3>
+                        <p>Bestseller with outstanding reviews</p>
+                    </div>
+                </div>
+                <div class="gem-slide">
+                    <img data-src="https://picsum.photos/400/250?random=54" alt="Product 5">
+                    <div class="card-content">
+                        <h3>Product 5</h3>
+                        <p>New arrival with innovative technology</p>
+                    </div>
+                </div>
+                <div class="gem-slide">
+                    <img data-src="https://picsum.photos/400/250?random=55" alt="Product 6">
+                    <div class="card-content">
+                        <h3>Product 6</h3>
+                        <p>Limited edition with exclusive features</p>
+                    </div>
+                </div>
+                <div class="gem-slide">
+                    <img data-src="https://picsum.photos/400/250?random=56" alt="Product 7">
+                    <div class="card-content">
+                        <h3>Product 7</h3>
+                        <p>Special offer with great discount</p>
+                    </div>
+                </div>
+                <div class="gem-slide">
+                    <img data-src="https://picsum.photos/400/250?random=57" alt="Product 8">
+                    <div class="card-content">
+                        <h3>Product 8</h3>
+                        <p>Premium collection with unique design</p>
+                    </div>
+                </div>
+            </div>
+            <div class="gem-dots"></div>
         </div>
-        <div class="gem-dots"></div>
-      </div>
+        
+        <div class="controls">
+            <button id="items-btn">Change Items</button>
+            <button id="scroll-btn">Change Scroll</button>
+            <button id="infinite-btn">Toggle Infinite</button>
+        </div>
+        
+        <div class="feature-list">
+            <h3>Features Demonstrated:</h3>
+            <ul>
+                <li>Multiple items display</li>
+                <li>Custom number of items to scroll</li>
+                <li>Responsive breakpoints</li>
+                <li>Lazy loading of images</li>
+                <li>Dot navigation</li>
+                <li>Arrow navigation</li>
+                <li>Infinite loop option</li>
+            </ul>
+        </div>
+    </div>
       
-      <script src="../../gemslider.js"></script>
-      <script>
-      new GemSlider(document.querySelector('.multi-item-slider'), {
-        slidesToShow: 4,
-        slidesToScroll: 2,
-        dots: '.gem-dots',
-        responsive: [
-          {
-            breakpoint: 768,
-            settings: {
-              slidesToShow: 2,
-              slidesToScroll: 1
-            }
-          }
-        ]
-      });
-      </script>
+    <script src="../../gemslider.js"></script>
+    <script>
+        // Initialize slider
+        const slider = new GemSlider(document.querySelector('.multi-item-slider'), {
+            slidesToShow: 4,
+            slidesToScroll: 2,
+            dots: '.gem-dots',
+            lazyLoad: true,
+            accessibility: true,
+            arrows: {
+                prev: '.gem-prev',
+                next: '.gem-next'
+            },
+            responsive: [
+                {
+                    breakpoint: 992,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 2
+                    }
+                },
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1
+                    }
+                },
+                {
+                    breakpoint: 576,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                }
+            ]
+        });
+        
+        // Create arrows programmatically
+        const prevArrow = document.createElement('button');
+        prevArrow.className = 'gem-arrow gem-prev';
+        
+        const nextArrow = document.createElement('button');
+        nextArrow.className = 'gem-arrow gem-next';
+        
+        const sliderElement = document.querySelector('.multi-item-slider');
+        sliderElement.appendChild(prevArrow);
+        sliderElement.appendChild(nextArrow);
+        
+        // Update slider to use the arrows
+        slider.setOption('arrows', {
+            prev: '.gem-prev',
+            next: '.gem-next'
+        });
+        
+        // Control buttons
+        document.getElementById('items-btn').addEventListener('click', function() {
+            const currentItems = slider.options.slidesToShow;
+            const newItems = currentItems === 4 ? 2 : 4;
+            slider.setOption('slidesToShow', newItems);
+            this.textContent = newItems === 2 ? 'Show More Items' : 'Show Fewer Items';
+        });
+        
+        document.getElementById('scroll-btn').addEventListener('click', function() {
+            const currentScroll = slider.options.slidesToScroll;
+            const newScroll = currentScroll === 2 ? 1 : 2;
+            slider.setOption('slidesToScroll', newScroll);
+            this.textContent = newScroll === 1 ? 'Scroll Multiple' : 'Scroll Single';
+        });
+        
+        document.getElementById('infinite-btn').addEventListener('click', function() {
+            const currentInfinite = slider.options.infinite;
+            slider.setOption('infinite', !currentInfinite);
+            this.textContent = !currentInfinite ? 'Disable Infinite' : 'Enable Infinite';
+        });
+    </script>
 </body>
 </html>

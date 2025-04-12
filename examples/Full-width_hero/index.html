@@ -5,29 +5,204 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Full-width Hero Slider</title>
     <link rel="stylesheet" href="../../gemslider.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        
+        .hero-slider {
+            width: 100%;
+            height: 100vh;
+            max-height: 700px;
+            margin-bottom: 40px;
+        }
+        
+        .gem-slide {
+            position: relative;
+            padding: 0;
+            height: 100%;
+        }
+        
+        .gem-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .hero-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            box-sizing: border-box;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .gem-slide-visible .hero-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-btn {
+            padding: 12px 24px;
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .hero-btn:hover {
+            background-color: #ff5252;
+        }
+        
+        .gem-dots {
+            bottom: 20px;
+            position: absolute;
+            width: 100%;
+            z-index: 10;
+        }
+        
+        .gem-progress-bar {
+            height: 5px;
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .gem-progress-bar span {
+            background-color: #ff6b6b;
+        }
+        
+        .content-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .feature-list {
+            margin-top: 30px;
+        }
+        
+        .feature-list h3 {
+            margin-bottom: 10px;
+        }
+        
+        .feature-list ul {
+            margin-bottom: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="gem-slider hero-slider">
         <div class="gem-track">
-          <div class="gem-slide">
-            <img src="hero1.jpg" alt="Hero 1">
-            <div class="hero-content">
-              <h1>Welcome to Our Site</h1>
-              <p>Discover amazing features</p>
+            <div class="gem-slide">
+                <img data-src="https://picsum.photos/1920/1080?random=40" alt="Hero Image 1">
+                <div class="hero-content">
+                    <h1>Welcome to GemSlider</h1>
+                    <p>A modern, responsive slider library for your website</p>
+                    <a href="#features" class="hero-btn">Explore Features</a>
+                </div>
             </div>
-          </div>
-          <!-- More hero slides -->
+            <div class="gem-slide">
+                <img data-src="https://picsum.photos/1920/1080?random=41" alt="Hero Image 2">
+                <div class="hero-content">
+                    <h1>Beautiful Transitions</h1>
+                    <p>Create stunning slideshows with multiple animation options</p>
+                    <a href="#features" class="hero-btn">Learn More</a>
+                </div>
+            </div>
+            <div class="gem-slide">
+                <img data-src="https://picsum.photos/1920/1080?random=42" alt="Hero Image 3">
+                <div class="hero-content">
+                    <h1>Fully Responsive</h1>
+                    <p>Works perfectly on all devices and screen sizes</p>
+                    <a href="#features" class="hero-btn">Get Started</a>
+                </div>
+            </div>
+            <div class="gem-slide">
+                <img data-src="https://picsum.photos/1920/1080?random=43" alt="Hero Image 4">
+                <div class="hero-content">
+                    <h1>Highly Customizable</h1>
+                    <p>Easily adapt to your design needs with numerous options</p>
+                    <a href="#features" class="hero-btn">Customize Now</a>
+                </div>
+            </div>
         </div>
-      </div>
+        <div class="gem-dots"></div>
+    </div>
+    
+    <div class="content-section" id="features">
+        <h2>Full-width Hero Slider Example</h2>
+        <p>This example demonstrates a full-width hero slider with content overlays, perfect for website headers and landing pages.</p>
+        
+        <div class="feature-list">
+            <h3>Features Demonstrated:</h3>
+            <ul>
+                <li>Full-width responsive design</li>
+                <li>Content overlays with animations</li>
+                <li>Autoplay with progress bar</li>
+                <li>Lazy loading of high-resolution images</li>
+                <li>Dot navigation</li>
+                <li>Touch and swipe support</li>
+                <li>Accessibility improvements</li>
+            </ul>
+        </div>
+    </div>
       
-      <script src="../../gemslider.js"></script>
-      <script>
-      new GemSlider(document.querySelector('.hero-slider'), {
-        arrows: false,
-        dots: false,
-        autoplay: true,
-        autoplaySpeed: 5000
-      });
-      </script>
+    <script src="../../gemslider.js"></script>
+    <script>
+        // Initialize slider
+        const slider = new GemSlider(document.querySelector('.hero-slider'), {
+            animation: 'fade',
+            autoplay: true,
+            autoplaySpeed: 5000,
+            dots: '.gem-dots',
+            lazyLoad: true,
+            progressBar: true,
+            accessibility: true,
+            duration: 1.2,
+            pauseOnHover: true,
+            draggable: true
+        });
+    </script>
 </body>
 </html>

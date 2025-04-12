@@ -5,26 +5,297 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vertical Content Slider</title>
     <link rel="stylesheet" href="../../gemslider.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .container {
+            display: flex;
+            max-width: 1100px;
+            margin: 0 auto;
+            gap: 40px;
+        }
+        .slider-container {
+            flex: 0 0 60%;
+        }
+        .info-container {
+            flex: 0 0 35%;
+        }
+        .feature-list {
+            margin-top: 30px;
+        }
+        .feature-list h3 {
+            margin-bottom: 10px;
+        }
+        .feature-list ul {
+            margin-bottom: 20px;
+        }
+        .vertical-slider {
+            height: 600px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .gem-slide {
+            padding: 20px;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            border-bottom: 1px solid #eee;
+        }
+        .gem-slide:last-child {
+            border-bottom: none;
+        }
+        .news-item {
+            display: flex;
+            gap: 20px;
+        }
+        .news-image {
+            flex: 0 0 120px;
+            height: 120px;
+            overflow: hidden;
+            border-radius: 6px;
+        }
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .gem-slide-visible .news-image img:hover {
+            transform: scale(1.05);
+        }
+        .news-content {
+            flex: 1;
+        }
+        .news-content h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 18px;
+            color: #333;
+        }
+        .news-content p {
+            margin: 0 0 10px;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #666;
+        }
+        .news-date {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 5px;
+        }
+        .news-tag {
+            display: inline-block;
+            padding: 3px 8px;
+            background-color: #f0f0f0;
+            color: #666;
+            border-radius: 3px;
+            font-size: 12px;
+            margin-right: 5px;
+        }
+        .controls {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+            gap: 10px;
+        }
+        .controls button {
+            padding: 8px 16px;
+            background: #333;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .controls button:hover {
+            background: #555;
+        }
+    </style>
 </head>
 <body>
-    <div class="gem-slider vertical-slider">
-        <div class="gem-track">
-          <div class="gem-slide">
-            <h3>News Item 1</h3>
-            <p>Lorem ipsum dolor sit amet...</p>
-          </div>
-          <!-- More news items -->
+    <h1>GemSlider - Vertical Content Example</h1>
+    
+    <div class="container">
+        <div class="slider-container">
+            <div class="gem-slider vertical-slider">
+                <div class="gem-track">
+                    <div class="gem-slide">
+                        <div class="news-item">
+                            <div class="news-image">
+                                <img data-src="https://picsum.photos/120/120?random=60" alt="News Image 1">
+                            </div>
+                            <div class="news-content">
+                                <div class="news-date">April 12, 2025</div>
+                                <h3>GemSlider Releases New Version with Enhanced Features</h3>
+                                <p>The latest version of GemSlider introduces lazy loading, accessibility improvements, and new animation options for a better user experience.</p>
+                                <div>
+                                    <span class="news-tag">Technology</span>
+                                    <span class="news-tag">Update</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gem-slide">
+                        <div class="news-item">
+                            <div class="news-image">
+                                <img data-src="https://picsum.photos/120/120?random=61" alt="News Image 2">
+                            </div>
+                            <div class="news-content">
+                                <div class="news-date">April 10, 2025</div>
+                                <h3>How to Create Responsive Sliders for Modern Websites</h3>
+                                <p>Learn the best practices for implementing responsive sliders that work seamlessly across all devices and screen sizes.</p>
+                                <div>
+                                    <span class="news-tag">Tutorial</span>
+                                    <span class="news-tag">Design</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gem-slide">
+                        <div class="news-item">
+                            <div class="news-image">
+                                <img data-src="https://picsum.photos/120/120?random=62" alt="News Image 3">
+                            </div>
+                            <div class="news-content">
+                                <div class="news-date">April 8, 2025</div>
+                                <h3>The Importance of Accessibility in Web Components</h3>
+                                <p>Discover why accessibility should be a priority in web development and how GemSlider helps create inclusive user experiences.</p>
+                                <div>
+                                    <span class="news-tag">Accessibility</span>
+                                    <span class="news-tag">Web</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gem-slide">
+                        <div class="news-item">
+                            <div class="news-image">
+                                <img data-src="https://picsum.photos/120/120?random=63" alt="News Image 4">
+                            </div>
+                            <div class="news-content">
+                                <div class="news-date">April 5, 2025</div>
+                                <h3>Performance Optimization Tips for JavaScript Libraries</h3>
+                                <p>Explore techniques to improve the performance of JavaScript libraries, including lazy loading and efficient DOM manipulation.</p>
+                                <div>
+                                    <span class="news-tag">Performance</span>
+                                    <span class="news-tag">JavaScript</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gem-slide">
+                        <div class="news-item">
+                            <div class="news-image">
+                                <img data-src="https://picsum.photos/120/120?random=64" alt="News Image 5">
+                            </div>
+                            <div class="news-content">
+                                <div class="news-date">April 3, 2025</div>
+                                <h3>Creating Engaging User Interfaces with Animation</h3>
+                                <p>Learn how to use animations effectively to create engaging and intuitive user interfaces that delight your visitors.</p>
+                                <div>
+                                    <span class="news-tag">UI/UX</span>
+                                    <span class="news-tag">Animation</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gem-slide">
+                        <div class="news-item">
+                            <div class="news-image">
+                                <img data-src="https://picsum.photos/120/120?random=65" alt="News Image 6">
+                            </div>
+                            <div class="news-content">
+                                <div class="news-date">April 1, 2025</div>
+                                <h3>The Future of Web Development: Trends to Watch</h3>
+                                <p>Stay ahead of the curve with these emerging trends in web development that are shaping the future of the industry.</p>
+                                <div>
+                                    <span class="news-tag">Trends</span>
+                                    <span class="news-tag">Future</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gem-dots"></div>
+            </div>
+            
+            <div class="controls">
+                <button id="autoplay-btn">Toggle Autoplay</button>
+                <button id="items-btn">Change Visible Items</button>
+            </div>
         </div>
-      </div>
+        
+        <div class="info-container">
+            <div class="feature-list">
+                <h3>Features Demonstrated:</h3>
+                <ul>
+                    <li>Vertical scrolling</li>
+                    <li>Multiple items display</li>
+                    <li>Autoplay with customizable speed</li>
+                    <li>Lazy loading of images</li>
+                    <li>Dot navigation</li>
+                    <li>Responsive design</li>
+                    <li>Custom styling for news items</li>
+                </ul>
+                
+                <h3>Use Cases:</h3>
+                <ul>
+                    <li>News tickers</li>
+                    <li>Content feeds</li>
+                    <li>Timeline displays</li>
+                    <li>Vertical showcases</li>
+                    <li>Social media feeds</li>
+                </ul>
+                
+                <h3>Tips:</h3>
+                <p>Vertical sliders work best for content-heavy displays where users can scroll through information in a compact space. They're perfect for sidebars, news feeds, and timeline presentations.</p>
+            </div>
+        </div>
+    </div>
 
-      <script src="../../gemslider.js"></script>
-      <script>
-      new GemSlider(document.querySelector('.vertical-slider'), {
-        vertical: true,
-        slidesToShow: 3,
-        autoplay: true,
-        autoplaySpeed: 3000
-      });
-      </script>
+    <script src="../../gemslider.js"></script>
+    <script>
+        // Initialize slider
+        const slider = new GemSlider(document.querySelector('.vertical-slider'), {
+            vertical: true,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 3000,
+            dots: '.gem-dots',
+            lazyLoad: true,
+            accessibility: true,
+            progressBar: true
+        });
+        
+        // Control buttons
+        document.getElementById('autoplay-btn').addEventListener('click', function() {
+            if (slider.options.autoplay) {
+                slider.pauseAutoplay();
+                slider.setOption('autoplay', false);
+                this.textContent = 'Start Autoplay';
+            } else {
+                slider.setOption('autoplay', true);
+                slider.resumeAutoplay();
+                this.textContent = 'Pause Autoplay';
+            }
+        });
+        
+        document.getElementById('items-btn').addEventListener('click', function() {
+            const currentItems = slider.options.slidesToShow;
+            const newItems = currentItems === 3 ? 2 : (currentItems === 2 ? 1 : 3);
+            slider.setOption('slidesToShow', newItems);
+            this.textContent = `Show ${newItems === 3 ? '2' : (newItems === 2 ? '1' : '3')} Items`;
+        });
+    </script>
 </body>
 </html>

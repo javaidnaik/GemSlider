@@ -5,23 +5,126 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Centered Mode Slider</title>
     <link rel="stylesheet" href="../../gemslider.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .feature-list {
+            margin-top: 30px;
+        }
+        .feature-list h3 {
+            margin-bottom: 10px;
+        }
+        .feature-list ul {
+            margin-bottom: 20px;
+        }
+        .gem-slide {
+            height: 300px;
+            padding: 10px;
+        }
+        .gem-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        .gem-slide-visible img {
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+        .controls {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+            gap: 10px;
+        }
+        .controls button {
+            padding: 8px 16px;
+            background: #333;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .controls button:hover {
+            background: #555;
+        }
+    </style>
 </head>
 <body>
-    <div class="gem-slider centered-slider">
-        <div class="gem-track">
-          <div class="gem-slide"><img src="center1.jpg" alt="Center 1"></div>
-          <div class="gem-slide"><img src="center2.jpg" alt="Center 2"></div>
-          <div class="gem-slide"><img src="center3.jpg" alt="Center 3"></div>
+    <h1>GemSlider - Centered Mode Example</h1>
+    
+    <div class="container">
+        <div class="gem-slider centered-slider">
+            <div class="gem-track">
+                <div class="gem-slide"><img data-src="https://picsum.photos/600/300?random=20" alt="Center Image 1"></div>
+                <div class="gem-slide"><img data-src="https://picsum.photos/600/300?random=21" alt="Center Image 2"></div>
+                <div class="gem-slide"><img data-src="https://picsum.photos/600/300?random=22" alt="Center Image 3"></div>
+                <div class="gem-slide"><img data-src="https://picsum.photos/600/300?random=23" alt="Center Image 4"></div>
+                <div class="gem-slide"><img data-src="https://picsum.photos/600/300?random=24" alt="Center Image 5"></div>
+                <div class="gem-slide"><img data-src="https://picsum.photos/600/300?random=25" alt="Center Image 6"></div>
+                <div class="gem-slide"><img data-src="https://picsum.photos/600/300?random=26" alt="Center Image 7"></div>
+            </div>
+            <div class="gem-dots"></div>
         </div>
-      </div>
+        
+        <div class="controls">
+            <button id="items-btn">Toggle Items</button>
+            <button id="zoom-btn">Toggle Zoom Effect</button>
+        </div>
+        
+        <div class="feature-list">
+            <h3>Features Demonstrated:</h3>
+            <ul>
+                <li>Center mode with focus on active slide</li>
+                <li>Multiple slides visible at once</li>
+                <li>Scale effect on active slide</li>
+                <li>Lazy loading of images</li>
+                <li>Dot navigation</li>
+                <li>Responsive design</li>
+            </ul>
+        </div>
+    </div>
       
-      <script src="../../gemslider.js"></script>
-      <script>
-      new GemSlider(document.querySelector('.centered-slider'), {
-        centerMode: true,
-        centerPadding: '60px',
-        slidesToShow: 3
-      });
-      </script>
+    <script src="../../gemslider.js"></script>
+    <script>
+        // Initialize slider
+        const slider = new GemSlider(document.querySelector('.centered-slider'), {
+            centerMode: true,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            dots: '.gem-dots',
+            lazyLoad: true,
+            accessibility: true,
+            animation: 'slide'
+        });
+        
+        // Control buttons
+        document.getElementById('items-btn').addEventListener('click', function() {
+            const currentItems = slider.options.slidesToShow;
+            const newItems = currentItems === 3 ? 1 : 3;
+            slider.setOption('slidesToShow', newItems);
+            this.textContent = newItems === 1 ? 'Show Multiple' : 'Show Single';
+        });
+        
+        document.getElementById('zoom-btn').addEventListener('click', function() {
+            const sliderElement = document.querySelector('.centered-slider');
+            sliderElement.classList.toggle('zoom-effect');
+            this.textContent = sliderElement.classList.contains('zoom-effect') ? 'Disable Zoom' : 'Enable Zoom';
+        });
+    </script>
 </body>
 </html>

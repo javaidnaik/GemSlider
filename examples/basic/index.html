@@ -5,22 +5,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Basic Image Slider</title>
     <link rel="stylesheet" href="../../gemslider.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .feature-list {
+            margin-top: 30px;
+        }
+        .feature-list h3 {
+            margin-bottom: 10px;
+        }
+        .feature-list ul {
+            margin-bottom: 20px;
+        }
+        .gem-slide {
+            height: 400px;
+        }
+        .gem-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
 </head>
 <body>
-    <div class="gem-slider basic-image-slider">
-        <div class="gem-track">
-          <div class="gem-slide"><img src="image1.jpg" alt="Image 1"></div>
-          <div class="gem-slide"><img src="image2.jpg" alt="Image 2"></div>
-          <div class="gem-slide"><img src="image3.jpg" alt="Image 3"></div>
+    <h1>GemSlider - Basic Example</h1>
+    
+    <div class="container">
+        <div class="gem-slider basic-image-slider">
+            <div class="gem-track">
+                <div class="gem-slide"><img data-src="https://picsum.photos/800/400?random=1" alt="Nature Image 1"></div>
+                <div class="gem-slide"><img data-src="https://picsum.photos/800/400?random=2" alt="Nature Image 2"></div>
+                <div class="gem-slide"><img data-src="https://picsum.photos/800/400?random=3" alt="Nature Image 3"></div>
+                <div class="gem-slide"><img data-src="https://picsum.photos/800/400?random=4" alt="Nature Image 4"></div>
+                <div class="gem-slide"><img data-src="https://picsum.photos/800/400?random=5" alt="Nature Image 5"></div>
+            </div>
+            <div class="gem-dots"></div>
+            <div class="gem-thumbnails"></div>
         </div>
-        <div class="gem-dots"></div>
-      </div>
+        
+        <div class="feature-list">
+            <h3>Features Demonstrated:</h3>
+            <ul>
+                <li>Basic sliding functionality</li>
+                <li>Lazy loading of images</li>
+                <li>Dot navigation</li>
+                <li>Thumbnail navigation</li>
+                <li>Accessibility improvements</li>
+                <li>Touch swipe support</li>
+            </ul>
+        </div>
+    </div>
       
-      <script src="../../gemslider.js"></script>
-      <script>
-      new GemSlider(document.querySelector('.basic-image-slider'), {
-        dots: '.gem-dots'
-      });
-      </script>
+    <script src="../../gemslider.js"></script>
+    <script>
+        new GemSlider(document.querySelector('.basic-image-slider'), {
+            dots: '.gem-dots',
+            thumbnails: '.gem-thumbnails',
+            lazyLoad: true,
+            accessibility: true,
+            keyboardNavigation: true,
+            progressBar: true
+        });
+    </script>
 </body>
 </html>

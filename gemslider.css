@@ -1,1 +1,476 @@
-.gem-arrow,.gem-dot{cursor:pointer;outline:0}.gem-slider{position:relative;width:100%;margin:0 auto;overflow:hidden}.gem-track{display:flex;transition:transform .5s}.gem-slide{flex:0 0 100%;max-width:100%;padding:20px;box-sizing:border-box;opacity:.5;transition:opacity .3s}.gem-slide-visible{opacity:1}.gem-arrow{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;background-color:rgba(255,255,255,.8);border:none;border-radius:50%;box-shadow:0 2px 5px rgba(0,0,0,.2);transition:.3s;z-index:10}.gem-arrow:hover{background-color:#fff;box-shadow:0 4px 8px rgba(0,0,0,.2)}.gem-arrow::before{content:'';display:block;width:12px;height:12px;border-top:2px solid #333;border-right:2px solid #333;position:absolute;top:50%;left:50%}.gem-prev{left:20px}.gem-prev::before{transform:translate(-25%,-50%) rotate(-135deg)}.gem-next{right:20px}.gem-next::before{transform:translate(-75%,-50%) rotate(45deg)}.gem-dots{display:flex;justify-content:center;margin-top:20px}.gem-dot{width:12px;height:12px;background-color:#ccc;border-radius:50%;margin:0 6px;padding:0;border:none;transition:.3s}.gem-dot:hover{background-color:#999}.gem-dot-active{background-color:#333;transform:scale(1.2)}@media (max-width:768px){.gem-arrow{width:36px;height:36px}.gem-prev{left:10px}.gem-next{right:10px}.gem-dot{width:10px;height:10px;margin:0 4px}}.gem-slider.center-mode .gem-slide{opacity:.3;transition:.3s}.gem-slider.center-mode .gem-slide-visible{opacity:1;transform:scale(1.1)}.gem-slider.fade-effect .gem-track{transition:none}.gem-slider.fade-effect .gem-slide{position:absolute;top:0;left:0;opacity:0;transition:opacity .5s}.gem-slider.fade-effect .gem-slide-visible{opacity:1;z-index:2}.gem-slider.multiple-slides .gem-slide{flex:0 0 calc(33.333% - 20px);max-width:calc(33.333% - 20px);margin:0 10px}@media (max-width:992px){.gem-slider.multiple-slides .gem-slide{flex:0 0 calc(50% - 20px);max-width:calc(50% - 20px)}}@media (max-width:576px){.gem-slider.multiple-slides .gem-slide{flex:0 0 calc(100% - 20px);max-width:calc(100% - 20px)}}.gem-slider.vertical{height:400px}.gem-slider.vertical .gem-track{flex-direction:column}.gem-slider.vertical .gem-arrow{left:50%;transform:translateX(-50%)}.gem-slider.vertical .gem-prev{top:20px}.gem-slider.vertical .gem-prev::before{transform:translate(-50%,-25%) rotate(-45deg)}.gem-slider.vertical .gem-next{top:auto;bottom:20px}.gem-slider.vertical .gem-next::before{transform:translate(-50%,-75%) rotate(135deg)}.gem-slider.vertical .gem-dots{flex-direction:column;position:absolute;right:20px;top:50%;transform:translateY(-50%);margin-top:0}.gem-slider.vertical .gem-dot{margin:6px 0}@keyframes smoothScroll{0%{transform:translateX(0)}100%{transform:translateX(var(--scroll-distance))}}.gem-track.animating{animation:smoothScroll var(--scroll-duration) ease-in-out forwards}
+/* GemSlider Core Styles - v2.0.0 */
+
+/* Base Slider Styles */
+.gem-slider {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.gem-slider:focus {
+  outline: 2px solid rgba(0, 123, 255, 0.5);
+  outline-offset: 2px;
+}
+
+.gem-track {
+  display: flex;
+  transition: transform 0.5s;
+  will-change: transform;
+  height: 100%;
+}
+
+.gem-dragging {
+  cursor: grabbing !important;
+  transition: none !important;
+}
+
+/* Slide Styles */
+.gem-slide {
+  flex: 0 0 100%;
+  max-width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  opacity: 0.5;
+  transition: opacity 0.3s, transform 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.gem-slide-visible {
+  opacity: 1;
+}
+
+.gem-slide img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+/* Lazy Loading */
+.gem-lazy {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gem-lazy-loaded {
+  opacity: 1;
+}
+
+.gem-slide.loading::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 30px;
+  height: 30px;
+  margin: -15px 0 0 -15px;
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  border-top-color: #333;
+  border-radius: 50%;
+  animation: gem-spinner 0.8s linear infinite;
+}
+
+@keyframes gem-spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Navigation Arrows */
+.gem-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
+  z-index: 10;
+  cursor: pointer;
+  outline: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gem-arrow:hover {
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.gem-arrow:focus {
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+}
+
+.gem-arrow::before {
+  content: '';
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-top: 2px solid #333;
+  border-right: 2px solid #333;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.gem-prev {
+  left: 20px;
+}
+
+.gem-prev::before {
+  transform: translate(-25%, -50%) rotate(-135deg);
+}
+
+.gem-next {
+  right: 20px;
+}
+
+.gem-next::before {
+  transform: translate(-75%, -50%) rotate(45deg);
+}
+
+/* Dots Navigation */
+.gem-dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.gem-dot {
+  width: 12px;
+  height: 12px;
+  background-color: #ccc;
+  border-radius: 50%;
+  margin: 0 6px;
+  padding: 0;
+  border: none;
+  transition: all 0.3s;
+  cursor: pointer;
+  outline: 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.gem-dot:hover {
+  background-color: #999;
+}
+
+.gem-dot:focus {
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+}
+
+.gem-dot-active {
+  background-color: #333;
+  transform: scale(1.2);
+}
+
+/* Progress Bar */
+.gem-progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: rgba(0, 0, 0, 0.1);
+  z-index: 5;
+}
+
+.gem-progress-bar span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background-color: #333;
+  transition: width 0.3s ease;
+}
+
+/* Thumbnails */
+.gem-thumbnails {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 15px;
+  gap: 10px;
+}
+
+.gem-thumbnail {
+  width: 60px;
+  height: 60px;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s;
+  outline: 0;
+  background: none;
+}
+
+.gem-thumbnail:hover {
+  border-color: #999;
+}
+
+.gem-thumbnail:focus {
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+}
+
+.gem-thumbnail-active {
+  border-color: #333;
+}
+
+.gem-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* RTL Support */
+.gem-slider.rtl .gem-track {
+  flex-direction: row-reverse;
+}
+
+.gem-slider.rtl .gem-prev {
+  left: auto;
+  right: 20px;
+}
+
+.gem-slider.rtl .gem-prev::before {
+  transform: translate(-75%, -50%) rotate(45deg);
+}
+
+.gem-slider.rtl .gem-next {
+  right: auto;
+  left: 20px;
+}
+
+.gem-slider.rtl .gem-next::before {
+  transform: translate(-25%, -50%) rotate(-135deg);
+}
+
+/* Animation Effects */
+.gem-slider.fade-effect .gem-track {
+  transition: none;
+}
+
+.gem-slider.fade-effect .gem-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.gem-slider.fade-effect .gem-slide-visible {
+  opacity: 1;
+  z-index: 2;
+}
+
+.gem-slider.zoom-effect .gem-slide {
+  transform: scale(0.9);
+  transition: transform 0.5s, opacity 0.5s;
+}
+
+.gem-slider.zoom-effect .gem-slide-visible {
+  transform: scale(1);
+}
+
+/* Multiple Slides Display */
+.gem-slider.multiple-slides .gem-slide {
+  flex: 0 0 calc(33.333% - 20px);
+  max-width: calc(33.333% - 20px);
+  margin: 0 10px;
+}
+
+/* Center Mode */
+.gem-slider.center-mode .gem-slide {
+  opacity: 0.3;
+  transition: all 0.3s;
+}
+
+.gem-slider.center-mode .gem-slide-visible {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* Vertical Slider */
+.gem-slider.vertical {
+  height: 400px;
+}
+
+.gem-slider.vertical .gem-track {
+  flex-direction: column;
+}
+
+.gem-slider.vertical .gem-arrow {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.gem-slider.vertical .gem-prev {
+  top: 20px;
+}
+
+.gem-slider.vertical .gem-prev::before {
+  transform: translate(-50%, -25%) rotate(-45deg);
+}
+
+.gem-slider.vertical .gem-next {
+  top: auto;
+  bottom: 20px;
+}
+
+.gem-slider.vertical .gem-next::before {
+  transform: translate(-50%, -75%) rotate(135deg);
+}
+
+.gem-slider.vertical .gem-dots {
+  flex-direction: column;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-top: 0;
+}
+
+.gem-slider.vertical .gem-dot {
+  margin: 6px 0;
+}
+
+.gem-slider.vertical .gem-progress-bar {
+  width: 4px;
+  height: 100%;
+  top: 0;
+  right: 0;
+  left: auto;
+}
+
+.gem-slider.vertical .gem-progress-bar span {
+  width: 100%;
+  height: 0;
+  transition: height 0.3s ease;
+}
+
+/* Smooth Scrolling Animation */
+@keyframes smoothScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(var(--scroll-distance));
+  }
+}
+
+.gem-track.animating {
+  animation: smoothScroll var(--scroll-duration) ease-in-out forwards;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .gem-slider.multiple-slides .gem-slide {
+    flex: 0 0 calc(50% - 20px);
+    max-width: calc(50% - 20px);
+  }
+  
+  .gem-thumbnail {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .gem-arrow {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .gem-prev {
+    left: 10px;
+  }
+  
+  .gem-next {
+    right: 10px;
+  }
+  
+  .gem-dot {
+    width: 10px;
+    height: 10px;
+    margin: 0 4px;
+  }
+  
+  .gem-thumbnails {
+    gap: 6px;
+  }
+  
+  .gem-thumbnail {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 576px) {
+  .gem-slider.multiple-slides .gem-slide {
+    flex: 0 0 calc(100% - 20px);
+    max-width: calc(100% - 20px);
+  }
+  
+  .gem-arrow {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .gem-arrow::before {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .gem-slide {
+    padding: 10px;
+  }
+}
+
+/* Accessibility Focus Styles */
+.gem-slider:focus-visible,
+.gem-arrow:focus-visible,
+.gem-dot:focus-visible,
+.gem-thumbnail:focus-visible {
+  outline: 2px solid #4d90fe;
+  outline-offset: 2px;
+}
+
+/* Print Styles */
+@media print {
+  .gem-slider {
+    height: auto !important;
+    overflow: visible !important;
+  }
+  
+  .gem-track {
+    display: block !important;
+    transform: none !important;
+    width: 100% !important;
+  }
+  
+  .gem-slide {
+    display: block !important;
+    width: 100% !important;
+    opacity: 1 !important;
+    page-break-inside: avoid;
+    margin-bottom: 20px;
+  }
+  
+  .gem-arrow,
+  .gem-dots,
+  .gem-progress-bar,
+  .gem-thumbnails {
+    display: none !important;
+  }
+}

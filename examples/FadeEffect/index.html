@@ -5,24 +5,151 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fade Effect Slider</title>
     <link rel="stylesheet" href="../../gemslider.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .feature-list {
+            margin-top: 30px;
+        }
+        .feature-list h3 {
+            margin-bottom: 10px;
+        }
+        .feature-list ul {
+            margin-bottom: 20px;
+        }
+        .gem-slide {
+            height: 500px;
+        }
+        .gem-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .controls {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+            gap: 10px;
+        }
+        .controls button {
+            padding: 8px 16px;
+            background: #333;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .controls button:hover {
+            background: #555;
+        }
+        .animation-selector {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .animation-selector select {
+            padding: 8px 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+    </style>
 </head>
 <body>
-    <div class="gem-slider fade-slider">
-        <div class="gem-track">
-          <div class="gem-slide"><img src="fade1.jpg" alt="Fade 1"></div>
-          <div class="gem-slide"><img src="fade2.jpg" alt="Fade 2"></div>
-          <div class="gem-slide"><img src="fade3.jpg" alt="Fade 3"></div>
+    <h1>GemSlider - Fade Effect Example</h1>
+    
+    <div class="container">
+        <div class="gem-slider fade-slider">
+            <div class="gem-track">
+                <div class="gem-slide"><img data-src="https://picsum.photos/800/500?random=30" alt="Fade Image 1"></div>
+                <div class="gem-slide"><img data-src="https://picsum.photos/800/500?random=31" alt="Fade Image 2"></div>
+                <div class="gem-slide"><img data-src="https://picsum.photos/800/500?random=32" alt="Fade Image 3"></div>
+                <div class="gem-slide"><img data-src="https://picsum.photos/800/500?random=33" alt="Fade Image 4"></div>
+                <div class="gem-slide"><img data-src="https://picsum.photos/800/500?random=34" alt="Fade Image 5"></div>
+            </div>
+            <div class="gem-dots"></div>
         </div>
-      </div>
+        
+        <div class="animation-selector">
+            <label for="animation-type">Animation Type: </label>
+            <select id="animation-type">
+                <option value="fade">Fade</option>
+                <option value="slide">Slide</option>
+                <option value="zoom">Zoom</option>
+            </select>
+        </div>
+        
+        <div class="controls">
+            <button id="prev-btn">Previous</button>
+            <button id="next-btn">Next</button>
+            <button id="autoplay-btn">Toggle Autoplay</button>
+        </div>
+        
+        <div class="feature-list">
+            <h3>Features Demonstrated:</h3>
+            <ul>
+                <li>Fade transition effect</li>
+                <li>Multiple animation options (fade, slide, zoom)</li>
+                <li>Autoplay with customizable speed</li>
+                <li>Lazy loading of images</li>
+                <li>Dot navigation</li>
+                <li>Progress bar indicator</li>
+                <li>Programmatic navigation</li>
+            </ul>
+        </div>
+    </div>
       
-      <script src="../../gemslider.js"></script>
-      <script>
-      new GemSlider(document.querySelector('.fade-slider'), {
-        fade: true,
-        arrows: false,
-        autoplay: true,
-        autoplaySpeed: 3000
-      });
-      </script>
+    <script src="../../gemslider.js"></script>
+    <script>
+        // Initialize slider
+        const slider = new GemSlider(document.querySelector('.fade-slider'), {
+            animation: 'fade',
+            autoplay: true,
+            autoplaySpeed: 3000,
+            dots: '.gem-dots',
+            lazyLoad: true,
+            progressBar: true,
+            accessibility: true,
+            duration: 0.7
+        });
+        
+        // Animation selector
+        document.getElementById('animation-type').addEventListener('change', function() {
+            slider.setOption('animation', this.value);
+        });
+        
+        // Control buttons
+        document.getElementById('prev-btn').addEventListener('click', function() {
+            slider.prev();
+        });
+        
+        document.getElementById('next-btn').addEventListener('click', function() {
+            slider.next();
+        });
+        
+        document.getElementById('autoplay-btn').addEventListener('click', function() {
+            if (slider.options.autoplay) {
+                slider.pauseAutoplay();
+                slider.setOption('autoplay', false);
+                this.textContent = 'Start Autoplay';
+            } else {
+                slider.setOption('autoplay', true);
+                slider.resumeAutoplay();
+                this.textContent = 'Stop Autoplay';
+            }
+        });
+    </script>
 </body>
 </html>
